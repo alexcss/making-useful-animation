@@ -1,0 +1,156 @@
+@import (less) "normalize.css";
+@import (less) "layout.css";
+body{
+
+}
+
+/* Typography */
+a,
+input[type="submit"],
+input[type="button"],
+button{
+	-webkit-transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
+	-moz-transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
+	transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
+}
+input[type="submit"],
+input[type="button"],
+button,
+.ba-button{
+	display: inline-block;
+	border: 3px solid #fff;
+	background: none;
+	padding: 10px 30px;
+	color: #FFF;
+	position: relative;
+	overflow: hidden;
+	&:before{
+		content: "";
+		position: absolute;
+		left: 0;
+		width: 100%;
+		top: 0;
+		bottom: 0;
+		transition: transform .2s cubic-bezier(0.145, -0.535, 0.755, 0.445);
+		background: #FFF;
+		transform: translateX(-100%);
+		z-index: -1;
+	}
+	&:hover{
+		color: #000;
+		&:before{
+			transform: translateX(0);
+		}
+	}
+	&:active{
+		color: #000;
+		&:before{
+			transform: translate(0, 50px);
+		}
+	}
+}
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover,
+.ba-button:hover{
+
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+textarea,
+select {
+
+	-webkit-transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
+	-moz-transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
+	transition: color .3s ease-in, border-color .3s ease-in, background-color .3s ease-in, opacity .3s ease-in;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+textarea:focus,
+select:focus {
+
+}
+textarea {
+
+}
+
+/* Layout */
+html, body {
+	min-height: 100%;
+	font-smoothing: antialiased;
+}
+html {
+	height: 100%;
+}
+body{
+	background: #4E859E;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	&:before{
+		position: absolute;
+		content: '';
+		left: -100px;
+		right: -100px;
+		bottom: 0;
+		top: 0;
+		background-image: url(../img/foggy-forest.jpg);
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: cover;
+		z-index: 0;
+			opacity: 0.4;
+		animation-name: moving-bg;
+		animation-duration: 30s;
+		animation-iteration-count: infinite;
+		/*animation-direction: alternate;*/
+		/*animation-timing-function: cubic-bezier(1,.015,.295,1.225);*/
+	}
+}
+@keyframes moving-bg {
+	0%{
+		transform: translateX(-100px);
+	}
+	50%{
+		transform: translateX(0);
+	}
+	100%{
+		transform: translateX(-100px);
+	}
+}
+.ba-container{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+main {
+	padding: 50px;
+	position: relative;
+	z-index: 1;
+}
+.box {
+	width: 200px;
+	height: 200px;
+	background-color: coral;
+	animation-timing-function: cubic-bezier(1,.015,.295,1.225);
+	// outline:1px solid transparent;
+}
+
+@keyframes sq-to-circle {
+  0%  {
+  }
+  25%  {
+  }
+  50%  {
+  }
+  75%  {
+  }
+  100% {
+  }
+}
