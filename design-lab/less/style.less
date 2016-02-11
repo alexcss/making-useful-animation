@@ -357,3 +357,16 @@ select {
 		padding-right: 10px;
 	}
 }
+
+
+.svg-pen{
+	fill:none;
+	path{
+		stroke:#000;
+		stroke-width:1px;
+		.draw &{
+			transition:stroke-dashoffset 10s;
+			stroke-dashoffset:0;
+		}
+	}
+}

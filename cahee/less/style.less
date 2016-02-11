@@ -2,11 +2,61 @@
 @import (less) "layout.css";
 @import (less) "fonts.css";
 
+html, body{
+	min-height: 100%;
+}
+html{
+	height: 100%;
+	overflow-y: scroll;
+}
 body{
 	font:300 17px/1.58 "Raleway", Arial, sans-serif;
 	color: #262626;
 }
+.ba-logo-img{
+	position: relative;
+	z-index: 99999999;
+}
+.loading{
+	overflow: hidden;
+	height: 100vh;
+	.ba-logo-img{
+		position: fixed;
+		top: 50px;
+		z-index: 99999999;
+		fill:transparent;
+		stroke:#000;
+		stroke-width:1px;
+		stroke-dasharray: 1000px;
+		stroke-dashoffset: 1000px;
+		animation:draw 10s 1 forwards;
+	}
+	.loader-overlay{
+		visibility: visible;
+		transform: translateX(0);
+		// opacity: 1;
+	}
+}
 
+.loader-overlay{
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background: #FFE930;
+	z-index: 99999;
+	// visibility: hidden;
+	// opacity: 0;
+	transition-property: transform, opacity,visibility;
+	transition-duration: 1s;
+	transform: translateX(-100%);
+}
+@keyframes draw{
+	to{
+		stroke-dashoffset:0;
+	}
+}
 /* Typography */
 h1,h2,h3,h4,h5,h6 {
 	font:700 30px/1 "Raleway", Arial, sans-serif;
@@ -151,6 +201,50 @@ textarea {
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	@media (max-width: 768px){
+		display: none;
+	}
+}
+.menu-toggle{
+	width: 30px;
+	height: 30px;
+	display: block;
+	@media (min-width: 767px){
+		display: none;
+	}
+	span{
+		height: 3px;
+		display: block;
+		position: relative;
+		background: #111;
+		&:before, &:after{
+			position: absolute;
+			left: 0;
+			top: 0;
+			content: "";
+			width: 100%;
+			height: 3px;
+			background: #111;
+			transition: transform .3s;
+		}
+		&:before{
+			transform: translateY(-5px);
+		}
+		&:after{
+			transform: translateY(5px);
+		}
+	}
+	&:hover{
+		span{
+			background: none;
+			&:before{
+				transform: translateY(0) rotate(-45deg);
+			}
+			&:after{
+				transform: translateY(0) rotate(45deg);
+			}
+		}
+	}
 }
 .ba-menu li {
 	float: left;
@@ -167,24 +261,48 @@ textarea {
 	font-weight: 700;
 	text-transform: uppercase;
 	line-height: 1;
-	padding-top: 18px;
+	margin-top: 18px;
+	padding: 5px 10px;
 	position: relative;
+	background: rgba(0,0,0, .1);
+	position: relative;
+	perspective: 500px;
+	transform-style: preserve-3d;
+	&:before{
+		position: absolute;
+		content: attr(data-text);
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: #FFE930;
+		color: #000;
+		padding: 5px 10px;
+		transform-origin:top;
+		transform: rotateX(270deg);
+		transition: transform .5s;
+	}
+	&:hover{
+		&:before{
+			transform: rotateX(0deg);
+		}
+	}
 }
-.ba-menu li a:before{
-	display: block;
-	background-color:  #ff6033;
-	position: absolute;
-	content: "";
-	left: 0;
-	right: 0;
-	top: 8px;
-	height: 3px;
-	opacity: 0;
-}
-.ba-menu li a.active:before,
-.ba-menu li a:hover:before{
-	opacity: 1;
-}
+// .ba-menu li a:before{
+// 	display: block;
+// 	background-color:  #ff6033;
+// 	position: absolute;
+// 	content: "";
+// 	left: 0;
+// 	right: 0;
+// 	top: 8px;
+// 	height: 3px;
+// 	opacity: 0;
+// }
+// .ba-menu li a.active:before,
+// .ba-menu li a:hover:before{
+// 	opacity: 1;
+// }
 
 /* banner */
 .ba-banner {
@@ -199,6 +317,7 @@ textarea {
 	padding: 90px 0;
 }
 .ba-section--about{
+	overflow: hidden;
 	color: #FFF;
 	background-color: #00c4c4;
 	background: radial-gradient(circle farthest-side at 50%, rgba(0, 196, 196, 0.9) 0%, rgba(0, 183, 183, 0.9) 31%, rgba(0, 173, 173, 0.9) 67%, rgba(0, 156, 156, 0.9) 100%);
@@ -216,9 +335,16 @@ textarea {
 	color: #FFF;
 }
 .ba-rotate{
+	animation: ba-rotate 30s 0.5s linear infinite;
+}
+@keyframes ba-rotate{
+	to{
+		transform: rotate(360deg);
+	}
 }
 .ba-drop-shadow{
 	padding-top: 40px;
+	filter: drop-shadow(4px 10px 10px rgba(0,0,0,.5))
 }
 .ba-section--services {
 	background-color:  #70bfff;
@@ -425,4 +551,33 @@ address{
 	.ba-footer__copy {
 		text-align: center;
 	}
+}
+
+.input-wrapper{
+	position: relative;
+	margin: 30px 0;
+	label{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 55px;
+    	line-height: 55px;
+    	padding: 0 15px;
+    	transition: transform .3s cubic-bezier(.72,-0.91,.27,1.67);
+    	cursor: pointer;
+	}
+	input[type="text"], input[type="email"]{
+		&:focus{
+			border-color: red;
+			outline: none;
+			& + label{
+				transform: translateY(-70%);
+			}
+		}
+		&:valid + label{
+				transform: translateY(-70%);
+		}
+	}
+
 }

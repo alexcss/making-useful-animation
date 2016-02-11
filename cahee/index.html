@@ -15,7 +15,10 @@
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body class="loading">
+
+<div class="loader-overlay"></div>
+
 	<!-- BEGIN ba-fresh  -->
 	<div class="ba-fresh">
 		<div class="ba-container">
@@ -28,13 +31,16 @@
 				</a>
 
 				<nav class="ba-float-right">
+					<a href="#" class="menu-toggle">
+						<span></span>
+					</a>
 					<ul class="ba-menu">
-						<li><a href="#" class="active">HOME</a></li>
-						<li><a href="#about">ABOUT</a></li>
-						<li><a href="#services">SERVICES</a></li>
-						<li><a href="#gallery">GALLERY</a></li>
-						<li><a href="#blog">BLOG</a></li>
-						<li><a href="#contact">CONTACT</a></li>
+						<li><a data-text="HOME" href="#" class="active">HOME</a></li>
+						<li><a data-text="ABOUT" href="#about">ABOUT</a></li>
+						<li><a data-text="SERVICES" href="#services">SERVICES</a></li>
+						<li><a data-text="GALLERY" href="#gallery">GALLERY</a></li>
+						<li><a data-text="BLOG" href="#blog">BLOG</a></li>
+						<li><a data-text="CONTACT" href="#contact">CONTACT</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -77,7 +83,7 @@
 			<div class="ba-container">
 				<!-- BEGIN ba-grid  -->
 				<div class="ba-grid">
-				    <div class="ba-width-1-2">
+				    <div class="ba-width-medium-1-2">
 				    	<ul class="ba-services">
 				    		<li class="ba-service">
 				    			<h5 class="ba-service__title">Online Shopping</h5>
@@ -97,7 +103,7 @@
 				    		</li>
 				    	</ul>
 				    </div>
-				    <div class="ba-width-1-2">
+				    <div class="ba-width-medium-1-2">
 						<h2 class="ba-title ba-title--services">Our Services</h2>
 				    </div>
 				</div>
@@ -204,19 +210,15 @@
 				<div class="ba-grid">
 					<div class="ba-width-medium-1-2">
 						<form class="ba-contact-form" action="#" method="post">
-							<p>
-								<input type="text" name="name" required placeholder="Your name">
+							<p class="input-wrapper">
+								<input id="ba-name" type="text" name="name" required >
+								<label for="ba-name">Your name</label>
 							</p>
-							<p>
-								<input type="email" name="email" required placeholder="Your email">
-							</p>
-							<p>
-								<input type="tel" name="tel" required placeholder="Your phone number...">
+							<p class="input-wrapper">
+								<input id="ba-email" type="email" name="email" required >
+								<label for="ba-email">Your email</label>
 							</p>
 
-							<p>
-								<textarea name="message" required placeholder="Your message"></textarea>
-							</p>
 							<button class="ba-button" type="submit">Send</button>
 						</form>
 					</div>
@@ -254,7 +256,9 @@
 			</div>
 		</div>
 	</footer>
-
+	<script src="js/jquery-1.11.3.min.js"></script>
 	<script src="js/main.js"></script>
+
+
 </body>
 </html>

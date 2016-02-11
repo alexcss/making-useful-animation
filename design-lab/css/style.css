@@ -889,5 +889,17 @@ select {
     padding-right: 10px;
   }
 }
+.svg-pen {
+  fill: none;
+}
+.svg-pen path {
+  stroke: #000;
+  stroke-width: 1px;
+}
+.draw .svg-pen path {
+  -webkit-transition: stroke-dashoffset 10s;
+          transition: stroke-dashoffset 10s;
+  stroke-dashoffset: 0;
+}
 
 /*# sourceMappingURL=style.css.map */
